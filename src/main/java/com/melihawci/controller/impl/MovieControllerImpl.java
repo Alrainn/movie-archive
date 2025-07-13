@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.melihawci.controller.IMovieController;
 import com.melihawci.dto.MovieRequestDTO;
 import com.melihawci.dto.MovieResponseDTO;
+import com.melihawci.dto.MovieUpdateDTO;
 import com.melihawci.services.IMovieService;
 
 @RestController
@@ -47,6 +50,21 @@ public class MovieControllerImpl implements IMovieController
 	{
 		return movieService.findAll();
 	}
+	
+	@Override
+	@PutMapping("/update/{id}")
+	public MovieResponseDTO update(@PathVariable Long id, @RequestBody MovieUpdateDTO movieUpdateDTO) {
+	    return movieService.update(id, movieUpdateDTO);
+	}
+
+	@Override
+	@DeleteMapping("/delete/{id}")
+	public void delete(@PathVariable(name = "id")  Long id) {
+		
+		movieService.deleteById(id);
+	}
+
+
 	
 	
 	

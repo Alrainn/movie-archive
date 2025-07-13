@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.melihawci.dto.MovieRequestDTO;
 import com.melihawci.dto.MovieResponseDTO;
+import com.melihawci.dto.MovieUpdateDTO;
 import com.melihawci.entities.Movie;
 import com.melihawci.repository.MovieRepository;
 import com.melihawci.services.IMovieService;
@@ -88,15 +89,29 @@ public class MovieServiceImpl implements IMovieService
 	}
 
 	@Override
-	public MovieResponseDTO update(MovieRequestDTO movieRequestDTO) {
+	public void deleteById(Long id) {
 		
-		return null;
+		movieRepository.deleteById(id);
 	}
 
 	@Override
-	public void deleteById(Long id) {
-		
-		
-	}
+	public MovieResponseDTO update(Long id, MovieUpdateDTO movieUpdateDTO) {
+	    Movie movie = movieRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Movie not found with id " + id));
 
+	    movie.setTitle(movieUpdateDTO.getTitle());
+	    movie.setDirector(movieUpdateDTO.getDirector());
+	    movie.setReleaseYear(movieUpdateDTO.getReleaseYear());
+	    movie.setGenre(movieUpdateDTO.getGenre());
+	    movie.setRating(movieUpdateDTO.getRating());
+
+	    Movie updatedMovie = movieRepository.save(movie);
+
+	    MovieResponseDTO dto = new MovieResponseDTO();
+	    dto.setTitle(updatedMovie.getTitle());
+	    dto.setDirector(updatedMovie.getDirector());
+
+	    return dto;
+	}
 }
+

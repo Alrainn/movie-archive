@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.melihawci.dto.MovieRequestDTO;
 import com.melihawci.dto.MovieResponseDTO;
+import com.melihawci.dto.MovieUpdateDTO;
 
 public interface IMovieService 
 {
@@ -15,7 +16,8 @@ public interface IMovieService
 	
 	public List<MovieResponseDTO> findAll();
 	
-	public MovieResponseDTO update(MovieRequestDTO movieRequestDTO);
+	public MovieResponseDTO update(Long id, MovieUpdateDTO movieUpdateDTO);
 	
 	public void deleteById(Long id);
+
 }
