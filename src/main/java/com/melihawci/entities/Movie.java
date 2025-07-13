@@ -31,13 +31,13 @@ public class Movie
 	private String director;
 	
 	@Column(name = "release_year", nullable = false)
-	private int releaseYear;
+	private Integer releaseYear;
 	
 	@Column(name = "genre", nullable = false)
 	private String genre;
 	
 	@Column(name = "rating", nullable = false)
-	private double rating;
+	private Double rating;
 	
 	
 }
