@@ -46,9 +46,29 @@ public class MovieServiceImpl implements IMovieService
 	}
 
 	@Override
-	public Optional<MovieResponseDTO> findById(Long id) {
+	public Optional<MovieResponseDTO> findById(Long id)
+	{
 		
-		return Optional.empty();
+		Optional<Movie> movieOpt = movieRepository.findById(id);
+		
+	    if (movieOpt.isPresent())
+	    {
+	    	
+	        Movie movie = movieOpt.get();
+	        
+	        MovieResponseDTO dto = new MovieResponseDTO();
+	        
+	        dto.setTitle(movie.getTitle());
+	        
+	        dto.setDirector(movie.getDirector());
+	        
+	        return Optional.of(dto);
+	        
+	    }
+	    else
+	    {
+	        return Optional.empty();
+	    }
 	}
 
 	@Override
