@@ -1,5 +1,18 @@
 package com.melihawci.dto;
 
-public class MovieRequestDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MovieRequestDTO 
+{
+
+	private String title;
+	private String director;
+	private Integer releaseYear;
+	private String genre;
+	private Double rating;
 }

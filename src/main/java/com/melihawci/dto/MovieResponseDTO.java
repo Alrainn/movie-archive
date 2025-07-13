@@ -11,7 +11,6 @@ public class MovieResponseDTO
 {
 	
 	private String title;
-	
 	private String director;
 	
 }
