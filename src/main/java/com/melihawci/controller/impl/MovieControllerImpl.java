@@ -1,5 +1,6 @@
 package com.melihawci.controller.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,13 @@ public class MovieControllerImpl implements IMovieController
 		
 		return movieService.findById(id);
 		
+	}
+
+	@Override
+	@GetMapping("/list")
+	public List<MovieResponseDTO> findAll()
+	{
+		return movieService.findAll();
 	}
 	
 	

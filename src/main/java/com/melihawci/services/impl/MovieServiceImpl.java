@@ -1,5 +1,6 @@
 package com.melihawci.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,9 +73,18 @@ public class MovieServiceImpl implements IMovieService
 	}
 
 	@Override
-	public List<MovieResponseDTO> findAll() {
-		
-		return null;
+	public List<MovieResponseDTO> findAll()
+	{
+		List<Movie> movies = movieRepository.findAll();
+	    List<MovieResponseDTO> response = new ArrayList<>();
+
+	    for (Movie movie : movies) {
+	        MovieResponseDTO dto = new MovieResponseDTO();
+	        BeanUtils.copyProperties(movie, dto);
+	        response.add(dto);
+	    }
+
+	    return response;
 	}
 
 	@Override
